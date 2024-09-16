@@ -14,8 +14,8 @@ generate:
 	python test_main.py
 	git config --local user.email "action@github.com"
 	git config --local user.name "GitHub Action"
-	git add .
-	git commit -m "test"
+	# Only add and commit if there are changes
+	git diff-index --quiet HEAD || git add . && git commit -m "test"
 	git push
 
 all: install format lint test
