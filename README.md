@@ -78,11 +78,3 @@ The script generates two key visualizations:
 
 2. **Mean Income by Gender and Race**:
 ![Mean Income by Gender and Race](Figure_2.png)
-
-## How to Run
-
-To run the script and generate the outputs:
-1. Clone this repository.
-2. Ensure that all required packages are installed by running:
-```bash
-pip install -r requirements.txt
