@@ -8,8 +8,6 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
-import numpy as np
 # Import the CSV to reset the DataFrame
 data_cpi_combined_steps = pd.read_csv('usa_00004.csv')
 
