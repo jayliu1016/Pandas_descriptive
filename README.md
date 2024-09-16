@@ -1,64 +1,88 @@
-# IDS706 Pandas Assignment by Kaisen Yao
+# IDS_DE Pandas Assignment by Jay Liu
 
-[![CI](https://github.com/kaisenyao/Pandas_descriptive/actions/workflows/workflow.yml/badge.svg)](https://github.com/kaisenyao/Pandas_descriptive/actions/workflows/workflow.yml)
+[![CI](https://github.com/jayliu1016/Pandas_descriptive/actions/workflows/workflow.yml/badge.svg)](https://github.com/jayliu1016/Pandas_descriptive/actions/workflows/workflow.yml)
 
-This repository contains my work for the **Pandas Descriptive Statistics Script** assignment in IDS 706. The script reads a dataset, generates summary statistics, and creates a data visualization. To use it, simply link it to a GitHub codespace and wait for the devcontainer to run the Makefile, which will execute the following tasks: install, format, lint, and test.
+This repository contains my work for the Pandas Descriptive Statistics Script assignment in IDS 706. The script reads a dataset, generates summary statistics, and creates data visualizations. To use it, simply link it to a GitHub Codespace and wait for the devcontainer to run the Makefile, which will execute the following tasks: install, format, lint, and test.
+
+## Repository Components
 
 This repository includes the following components:
 
-* `.devcontainer`
-* `Makefile`
-* `requirements.txt`
-* `README.md` 
-* `githubactions` 
-* `Dockerfile`
+- `.devcontainer`: Devcontainer configuration for setting up the development environment in Codespaces.
+- `Makefile`: Contains commands for installing dependencies, formatting code, running linters, and testing.
+- `requirements.txt`: Lists all the Python packages required for running the script.
+- `README.md`: This documentation file.
+- `.githubactions`: Configuration for GitHub Actions to automate CI tasks.
+- `Dockerfile`: Defines the Docker environment to ensure consistent development setup.
 
 ## Purpose
+
 The purpose of this project is to create a Python script that performs descriptive statistics on a given dataset using Pandas. The script:
-1. Reads a dataset (CSV).
-2. Generates key summary statistics such as mean, median, and standard deviation.
-3. Creates a histogram to visualize the distribution of a numerical column.
+1. Reads a dataset (CSV file).
+2. Filters and processes data to focus on key variables such as age, sex, race, and income.
+3. Generates important summary statistics such as mean, median, and standard deviation.
+4. Recodes categorical variables and creates dummy variables.
+5. Creates bar charts to visualize the mean income by gender and by race.
 
-The project uses `matplotlib` for data visualization and provides a markdown report summarizing the results.
+The project uses `matplotlib` and `seaborn` for data visualization and produces a clear summary of the dataset through both textual and graphical outputs.
 
-## Preparation
-1. Open codespaces.
-2. Load repo to codespaces.
-3. Wait for the installation of all the requirements in `requirements.txt`.
-4. Run the Makefile code: `make all`.
+## Setup and Preparation
+
+1. Open GitHub Codespaces.
+2. Load the repository into Codespaces.
+3. Wait for the installation of all dependencies specified in `requirements.txt`.
+4. Run the following command to execute the Makefile:
+Repository Components
+This repository includes the following components:
 
 ## About the Dataset
-This dataset provides details regarding employee salaries within a company. Each row corresponds to an individual employee, with columns capturing various attributes, including age, gender, education, job title, experience, and salary.
 
-**Columns**:
-1. Age: The age of the employee, given as a numerical value in years.
-2. Gender: The employee’s gender, categorized as male or female.
-3. Education Level: Indicates the employee’s highest educational qualification, categorized as high school, bachelor’s degree, master’s degree, or PhD.
-4. Job Title: The position held by the employee within the company, with possible titles such as manager, analyst, engineer, or administrator.
-5. Years of Experience: The number of years the employee has been working, represented as a numeric value.
-6. Salary: The employee’s annual income, listed in US dollars, varying based on job title, experience, and education.
+The dataset used in this project is based on survey data from the **Integrated Public Use Microdata Series (IPUMS)**, affiliated with the University of Minnesota (2019). The dataset contains demographic and wage information for individuals aged between 18 and 65. It captures various attributes including sex, age, race, and income from wages.
+
+### Variables:
+1. **Sex**: 1 represents male, 2 represents female.
+2. **Age**: Represents the actual age of the individual.
+3. **Race**: Categorized as:
+- 1 = White
+- 2 = Black/African American
+- 3 = Other (including Asian, American Indian, and mixed races)
+4. **Income (INCWAGE)**: Annual income in USD, with missing or retired individuals excluded.
+
+The script filters out individuals with no reported income and focuses on individuals of working age (18-65).
 
 ## Outputs
 
-1. **Summary Report**: The script computes and outputs important summary statistics rounded to 2 decimal places for numerical columns like `Age`, `Years of Experience`, and `Salary`. 
+### 1. **Summary Report**
+The script calculates and displays summary statistics for numerical variables like age, income, and race proportions. The statistics include mean, standard deviation, minimum, and maximum values for different demographic groups.
 
-   [Download the summary report](sandbox:/mnt/data/summary_report.md)
-
-2. **Salary Distribution Visualization**: A histogram showcasing the distribution of salary in the dataset is generated.
-
-   ![Salary Distribution](data_visualization.png)
+### 2. **Visualizations**
+The script generates two key visualizations:
+- **Mean Income by Gender**: A bar chart that displays the average income for males and females.
+- **Mean Income by Gender and Race**: A grouped bar chart showing the mean income for different races, split by gender.
 
 ## Example Output
 
-Here’s an example of the summary statistics generated by the script:
+### Summary Statistics:
 
-|       | Age   | Years of Experience | Salary   |
-|-------|-------|---------------------|----------|
-| count | 373.0 | 373.0               | 373.00   |
-| mean  | 37.43 | 10.03               | 100577.35|
-| std   | 7.07  | 6.56                | 48240.01 |
-| min   | 23.00 | 0.00                | 350.00   |
-| 50%   | 36.00 | 9.00                | 95000.00 |
-| max   | 53.00 | 25.00               | 250000.00|
+|       | Male | White | Black | Other_Races | INCWAGE | AGE   |
+|-------|------|-------|-------|-------------|---------|-------|
+| mean  | 0.52 | 0.77  | 0.09  | 0.14        | 55650.02| 41.42 |
+| std   | 0.50 | 0.42  | 0.29  | 0.09        | 67463.87| 13.60 |
+| min   | 0.00 | 0.00  | 0.00  | 0.00        | 5000.00 | 18.00 |
+| max   | 1.00 | 1.00  | 1.00  | 1.00        | 250000.0| 65.00 |
 
-The script provides a clean and concise summary of the dataset's most important numerical fields
+### Visualizations:
+
+1. **Mean Income by Gender**:
+![Mean Income by Gender](Figure_1.png)
+
+2. **Mean Income by Gender and Race**:
+![Mean Income by Gender and Race](Figure_2.png)
+
+## How to Run
+
+To run the script and generate the outputs:
+1. Clone this repository.
+2. Ensure that all required packages are installed by running:
+```bash
+pip install -r requirements.txt
