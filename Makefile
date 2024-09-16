@@ -15,7 +15,6 @@ generate:
 	git config --local user.email "action@github.com"
 	git config --local user.name "GitHub Action"
 	# Only add and commit if there are changes
-	git diff-index --quiet HEAD || git add . && git commit -m "test"
-	git push
+	git diff-index --quiet HEAD || (git add . && git commit -m "test" && git push) || true
 
 all: install format lint test
